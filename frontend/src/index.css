@@ -1,0 +1,412 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'JetBrains Mono', 'Fira Code', 'Consolas', monospace;
+    background: #0d1117;
+    min-height: 100vh;
+    color: #c9d1d9;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+/* Scrollbar - minimal terminal style */
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0d1117;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #30363d;
+    border-radius: 0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #6e7681;
+}
+
+/* Terminal card - sharp, minimal */
+.terminal-card {
+    background: #161b22;
+    border: 1px solid #30363d;
+    border-radius: 4px;
+}
+
+.terminal-card-header {
+    background: #1c2128;
+    border-bottom: 1px solid #30363d;
+    padding: 8px 16px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #8b949e;
+}
+
+/* Command prompt styling */
+.prompt {
+    color: #4ade80;
+    font-weight: 500;
+}
+
+.prompt::before {
+    content: '>';
+    margin-right: 8px;
+    color: #6e7681;
+}
+
+/* Input field - terminal style */
+.terminal-input {
+    background: #0d1117 !important;
+    border: 1px solid #30363d;
+    border-radius: 2px;
+    color: #c9d1d9 !important;
+    font-family: inherit;
+    padding: 10px 14px;
+    transition: border-color 0.15s ease;
+    -webkit-text-fill-color: #c9d1d9 !important;
+    caret-color: #c9d1d9;
+}
+
+/* Fix for select elements */
+select.terminal-input {
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%238b949e' d='M6 8L2 4h8z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 10px center;
+    padding-right: 30px;
+    cursor: pointer;
+}
+
+select.terminal-input option {
+    background: #161b22;
+    color: #c9d1d9;
+}
+
+/* Fix autofill styling */
+.terminal-input:-webkit-autofill,
+.terminal-input:-webkit-autofill:hover,
+.terminal-input:-webkit-autofill:focus {
+    -webkit-box-shadow: 0 0 0 1000px #0d1117 inset !important;
+    -webkit-text-fill-color: #c9d1d9 !important;
+    border-color: #30363d;
+}
+
+.terminal-input:focus {
+    outline: none;
+    border-color: #4ade80;
+}
+
+.terminal-input::placeholder {
+    color: #6e7681;
+    -webkit-text-fill-color: #6e7681;
+}
+
+/* Buttons - CLI style */
+.btn-terminal {
+    background: #21262d;
+    border: 1px solid #30363d;
+    color: #c9d1d9;
+    padding: 8px 16px;
+    border-radius: 2px;
+    font-family: inherit;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.btn-terminal:hover {
+    background: #30363d;
+    border-color: #8b949e;
+}
+
+.btn-primary {
+    background: #238636;
+    border: 1px solid #238636;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background: #2ea043;
+    border-color: #2ea043;
+}
+
+.btn-danger {
+    background: #da3633;
+    border: 1px solid #da3633;
+    color: #ffffff;
+}
+
+.btn-danger:hover {
+    background: #f85149;
+    border-color: #f85149;
+}
+
+.btn-success {
+    background: #238636;
+    border: 1px solid #238636;
+    color: #ffffff;
+}
+
+.btn-success:hover {
+    background: #2ea043;
+}
+
+/* Status indicators - text based */
+.status-tag {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.05em;
+    padding: 2px 8px;
+    border-radius: 2px;
+    text-transform: uppercase;
+}
+
+.status-executed {
+    background: rgba(35, 134, 54, 0.2);
+    color: #4ade80;
+    border: 1px solid rgba(35, 134, 54, 0.4);
+}
+
+.status-rejected {
+    background: rgba(218, 54, 51, 0.2);
+    color: #f87171;
+    border: 1px solid rgba(218, 54, 51, 0.4);
+}
+
+.status-pending {
+    background: rgba(251, 191, 36, 0.2);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.4);
+}
+
+.status-awaiting {
+    background: rgba(167, 139, 250, 0.2);
+    color: #a78bfa;
+    border: 1px solid rgba(167, 139, 250, 0.4);
+}
+
+/* Table - CLI output style */
+.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.data-table th {
+    background: #1c2128;
+    padding: 10px 14px;
+    text-align: left;
+    font-weight: 600;
+    color: #8b949e;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.05em;
+    border-bottom: 1px solid #30363d;
+}
+
+.data-table td {
+    padding: 10px 14px;
+    border-bottom: 1px solid #21262d;
+    color: #c9d1d9;
+}
+
+.data-table tr:hover td {
+    background: #1c2128;
+}
+
+/* Tabs - CLI navigation */
+.tab-item {
+    padding: 8px 16px;
+    font-size: 13px;
+    color: #8b949e;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.tab-item:hover {
+    color: #c9d1d9;
+}
+
+.tab-item.active {
+    color: #4ade80;
+    border-bottom-color: #4ade80;
+}
+
+/* Alert boxes */
+.alert {
+    padding: 12px 16px;
+    border-radius: 2px;
+    font-size: 13px;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+}
+
+.alert-success {
+    background: rgba(35, 134, 54, 0.15);
+    border: 1px solid rgba(35, 134, 54, 0.4);
+    color: #4ade80;
+}
+
+.alert-error {
+    background: rgba(218, 54, 51, 0.15);
+    border: 1px solid rgba(218, 54, 51, 0.4);
+    color: #f87171;
+}
+
+.alert-warning {
+    background: rgba(251, 191, 36, 0.15);
+    border: 1px solid rgba(251, 191, 36, 0.4);
+    color: #fbbf24;
+}
+
+.alert-info {
+    background: rgba(34, 211, 238, 0.15);
+    border: 1px solid rgba(34, 211, 238, 0.4);
+    color: #22d3ee;
+}
+
+/* Code blocks */
+.code-block {
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 2px;
+    padding: 12px 16px;
+    font-family: inherit;
+    font-size: 13px;
+    color: #4ade80;
+    overflow-x: auto;
+}
+
+/* Prefix labels */
+.prefix-ok::before {
+    content: '[OK] ';
+    color: #4ade80;
+}
+
+.prefix-err::before {
+    content: '[ERR] ';
+    color: #f87171;
+}
+
+.prefix-warn::before {
+    content: '[WARN] ';
+    color: #fbbf24;
+}
+
+.prefix-info::before {
+    content: '[INFO] ';
+    color: #22d3ee;
+}
+
+/* Animations */
+.animate-fade-in {
+    animation: fadeIn 0.2s ease-out;
+}
+
+.animate-slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { 
+        opacity: 0; 
+        transform: translateY(8px); 
+    }
+    to { 
+        opacity: 1; 
+        transform: translateY(0); 
+    }
+}
+
+/* Cursor blink for inputs */
+.cursor-blink::after {
+    content: '_';
+    animation: blink 1s step-end infinite;
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+}
+
+/* Loading spinner */
+.spinner {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #30363d;
+    border-top-color: #4ade80;
+    border-radius: 50%;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Badge styles */
+.badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 2px 8px;
+    font-size: 11px;
+    font-weight: 500;
+    border-radius: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.badge-green {
+    background: rgba(74, 222, 128, 0.15);
+    color: #4ade80;
+    border: 1px solid rgba(74, 222, 128, 0.3);
+}
+
+.badge-amber {
+    background: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    border: 1px solid rgba(251, 191, 36, 0.3);
+}
+
+.badge-red {
+    background: rgba(248, 113, 113, 0.15);
+    color: #f87171;
+    border: 1px solid rgba(248, 113, 113, 0.3);
+}
+
+.badge-purple {
+    background: rgba(167, 139, 250, 0.15);
+    color: #a78bfa;
+    border: 1px solid rgba(167, 139, 250, 0.3);
+}
+
+.badge-cyan {
+    background: rgba(34, 211, 238, 0.15);
+    color: #22d3ee;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+}
+
+.badge-gray {
+    background: rgba(139, 148, 158, 0.15);
+    color: #8b949e;
+    border: 1px solid rgba(139, 148, 158, 0.3);
+}
